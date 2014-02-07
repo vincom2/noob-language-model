@@ -1,6 +1,5 @@
 import collections
 import itertools
-import re
 import fileinput
 import math
 
@@ -41,7 +40,8 @@ def un_text(filenames):
     return kill_unknown_words(text, tokens)
 
 
-#all the 3 functions below expect to be passed preprocessed data (UNKNOWN_WORD replacement done, processed into lists of words)
+#all the 3 functions below expect to be passed preprocessed data
+#(UNKNOWN_WORD replacement done, processed into lists of words)
 
 def unigrams(text):
     freqs = collections.Counter(text)
@@ -98,7 +98,6 @@ def generate_model(training_data, lambdas):
         if all == 0:
             return 0
         else:
-            # print "for", lookup, "in", n, "gram model", "freq =", freq, "all =", all
             return float(freq)/float(all)
 
     def interpolate(word, history):
@@ -112,7 +111,7 @@ def generate_model(training_data, lambdas):
 #model is the function returned by generate_model()
 #test_data is a filename
 def perplexity(test_data, model, killed, unigrams):
-    #using the log version in hints.txt
+    #using the log version
     s = 0.0
     count = 0
     text = [w.lower() for w in string_to_words(combine_files([test_data]))]
